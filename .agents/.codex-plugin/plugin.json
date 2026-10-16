@@ -1,0 +1,11 @@
+{
+  "name": "go-cerebras",
+  "version": "0.1.0",
+  "description": "Unofficial Go client for the Cerebras Inference API, generated with oapi-codegen: typed methods for chat completions, completions and model listing.",
+  "author": { "name": "psyb0t", "url": "https://github.com/psyb0t" },
+  "homepage": "https://github.com/psyb0t/go-cerebras",
+  "repository": "https://github.com/psyb0t/go-cerebras",
+  "license": "MIT",
+  "keywords": ["cerebras", "llm", "inference", "go-library", "api-client", "openapi"],
+  "skills": "./skills/"
+}
