@@ -10,6 +10,10 @@ Unofficial Go client for the [Cerebras Inference API](https://inference-docs.cer
 
 The package is `cerebras`, in the repository root. Everything in `client.gen.go` is generated. Don't edit it by hand, regenerate it.
 
+## Contents
+
+[Install](#install) · [Usage](#usage) · [Auth](#auth) · [Regenerating](#regenerating) · [Agent integrations](#agent-integrations) · [Development](#development) · [License](#license)
+
 ## Install
 
 ```sh
@@ -66,6 +70,8 @@ func main() {
 `example_test.go` runs the same code against a local test server, so `make test` checks it.
 
 Method names come from the spec's operation IDs, so they are long: `ChatV1ChatCompletionsPost`, `CompletionsV1CompletionsPost`, `ListModelsV1ModelsGet`, `GetModelV1ModelsModelIdGet`.
+
+The full API is in the [Go reference](https://pkg.go.dev/github.com/psyb0t/go-cerebras); after `go get`, `go doc github.com/psyb0t/go-cerebras` prints it locally.
 
 Many schemas in the spec are `anyOf` unions, and oapi-codegen turns each into a struct with `As...` and `From...` methods. The model list response is one (`AsModelMetadataList`, or the OpenRouter and Hugging Face formats), the chat response is another (`AsChatCompletionResponse`), and so is every chat message. A user message is built like this:
 

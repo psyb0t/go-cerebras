@@ -1,6 +1,7 @@
 ---
 name: go-cerebras
-description: Unofficial Go client for the Cerebras Inference API, generated with oapi-codegen. `cerebras.NewClientWithResponses("https://api.cerebras.ai", cerebras.WithRequestEditorFn(...))` from `github.com/psyb0t/go-cerebras` gives typed methods for all 7 paths of the spec, chat completions (`ChatV1ChatCompletionsPost`), text completions (`CompletionsV1CompletionsPost`), model listing and lookup, and TCP warming. Union schemas come with `As...`/`From...` helpers. Use when Go code needs to call Cerebras inference, or already imports go-cerebras.
+description: Writes Go code with go-cerebras (package cerebras, github.com/psyb0t/go-cerebras), an unofficial client for the Cerebras Inference API generated with oapi-codegen. `cerebras.NewClientWithResponses("https://api.cerebras.ai", cerebras.WithRequestEditorFn(...))` gives typed methods for every path of the spec, including chat completions (`ChatV1ChatCompletionsPost`), text completions (`CompletionsV1CompletionsPost`), model listing and lookup, and TCP warming. Union schemas come with `As...`/`From...` helpers. Use when Go code needs to call Cerebras inference, or already imports go-cerebras.
+license: MIT
 homepage: https://github.com/psyb0t/go-cerebras
 user-invocable: true
 metadata:
@@ -9,8 +10,6 @@ metadata:
     requires:
       bins:
         - go
-      env:
-        - CEREBRAS_API_KEY
 permissions:
   filesystem: "Guides edits to the Go source of the current project. The library reads and writes no files."
   shell: "The Go toolchain (`go get`, `go build`, `go test`) to add and compile the dependency."
@@ -35,8 +34,22 @@ For install, the method list, unions and error handling in detail, see [referenc
 
 ## When NOT to use
 
-- You need streaming. The generated client returns the whole body; for `stream: true` read `HTTPResponse.Body` from the plain `Client` methods yourself.
+- You need streaming. The generated client returns the whole body; for `stream: true` call the plain `Client` method and read the body of the `*http.Response` it returns yourself.
 - The code is not Go. Use Cerebras's own SDKs.
+
+## Finding endpoints and types
+
+The examples below cover a few calls. Every operation in the spec has a generated method, and the spec's descriptions are on them as Go doc comments. Look names and fields up instead of guessing. After `go get github.com/psyb0t/go-cerebras`, from inside your module:
+
+```bash
+go doc github.com/psyb0t/go-cerebras ClientWithResponsesInterface  # every endpoint method
+go doc github.com/psyb0t/go-cerebras ChatCompletionRequest         # one method, params type or model
+go doc -all github.com/psyb0t/go-cerebras                          # the whole package
+```
+
+The same documentation is at https://pkg.go.dev/github.com/psyb0t/go-cerebras.
+
+Method names come from the spec's operation IDs, which include the path and HTTP method (`ChatV1ChatCompletionsPost`). `<OperationId>WithResponse` takes the context, then the path parameters in order, then `*<OperationId>Params` when the operation has query or header parameters, then the request body when it has one. The `JSON200` field (or `JSON422` and so on, per declared status) holds the decoded body; it is nil for any other status. Chat and model list bodies are unions, decoded with their `As...` methods.
 
 ## Usage
 

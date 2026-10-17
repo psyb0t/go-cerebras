@@ -9,7 +9,7 @@ Nearly all the code is generated:
 `scripts/fetch-spec.sh` → `api/openapi.yaml` → oapi-codegen (`config.yaml`) → `client.gen.go`.
 
 - `scripts/fetch-spec.sh` reads `openapi_spec_url` from the `.stats.yml` of `Cerebras/cerebras-cloud-sdk-python` and downloads that Stainless URL. The URL carries a content hash, so it is never hardcoded.
-- No patch step today: oapi-codegen takes the OpenAPI 3.1 spec as published.
+- No patch step: oapi-codegen takes the OpenAPI 3.1 spec as published.
 - `gen.go` holds the `//go:generate` lines in order.
 
 ## Stack
