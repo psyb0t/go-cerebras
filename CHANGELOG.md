@@ -2,6 +2,10 @@
 
 All notable changes per release. Versions follow [semver](https://semver.org).
 
+## v0.1.1, 2026-10-17
+
+- Documentation only. The README and `AGENTS.md` describe the daily regeneration workflow: what it checks, how it fixes failing checks, how it picks the next version and which paths a fix may not touch.
+
 ## v0.1.0, 2026-10-16
 
 - Added `cerebras`, a REST client generated with oapi-codegen from Cerebras's OpenAPI document (Cerebras Cloud API, spec version 0.2.0, OpenAPI 3.1.0). It covers all 7 paths: chat completions, completions, the authenticated and public model listings, and TCP warming.
